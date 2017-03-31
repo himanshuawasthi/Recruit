@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+}
+<h2>Requisition</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="panel-title pull-left">
+            <b>All Requisitions</b>
+        </div>
+        <button id="btnReq" class="btn btn-default pull-right">Add Requisitions</button>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Req#</th>
+                        <th>Status</th>
+                        <th></th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td></td>
+                        <td><button class="btn btn-primary">Change</button></td>
+                       
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<span id="txtArea" class="list-group">
+    
+</span>
+
+@section Scripts{
+    <script type="text/javascript">
+
+        var toggle = false;
+        $("#btnReq").click(function (event) {
+            if (!toggle) {
+                console.log("in func");
+                event.preventDefault();
+                $("<input/>", {
+                    "id": "textInput",
+                    "class": "form-control list-inline"
+                }).appendTo("#txtArea");
+
+                $("<label/>",{
+                    "id":"Lbl",
+                    "Text" : "Set Status"
+                }).appendTo("#txtArea");
+
+                var data = {
+                    'foo': 'Open',
+                    'foo2': 'Closed'
+                }
+
+                var s = $('<select />',
+                    {"class" : "form-control pull-right"
+                });
+
+                for (var val in data) {
+                    $('<option />', { value: val, text: data[val] }).appendTo(s);
+                }
+
+                s.appendTo("#txtArea");
+
+                $("<button/>", {
+                    "id": "btnSubmit",
+                    "class": "btn btn-primary text-right",
+                    "text": 'Add',
+
+
+                }).appendTo("#txtArea");
+
+                toggle = true;
+            }
+        });
+
+        $("#txtArea").on('click', ' #txtInput,#btnSubmit', function () {
+            console.log("Date ");
+            if(!$("#txtInput").value)
+            {
+                console.log("Inside if");
+                $("#txtInput").css("color" , "red");
+            }
+            else
+            {
+                console.log("Inside else");
+               
+            }
+        });
+
+       
+    </script>
+
+
+}
+
+

@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RequisitionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -263,6 +264,8 @@
     <Content Include="Scripts\jquery.validate.min.js.map">
       <DependentUpon>jquery.validate.min.js</DependentUpon>
     </Content>
+    <Content Include="Views\Requisition\Edit.cshtml" />
+    <Content Include="Views\Requisition\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

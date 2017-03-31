@@ -7,8 +7,11 @@
             <h3 class="panel-title pull-left">
                 <b>  Requisitions </b>
             </h3>
-
-            <button class="btn btn-default pull-right">Edit Requisitions</button>
+            @using (Html.BeginForm("Edit", "Requisition", FormMethod.Get))
+            {
+                <button class="btn btn-default pull-right">Edit Requisitions</button>
+            }
+            
             <div class="clearfix"></div>
         </div>
         <div class="panel-body">
@@ -26,7 +29,7 @@
                             <td>1</td>
                             <td>Test</td>
                             <td><button class="btn btn-primary">Add candidate</button></td>
-                            
+
                         </tr>
                     </tbody>
                 </table>

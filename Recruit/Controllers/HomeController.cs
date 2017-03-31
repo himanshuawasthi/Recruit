@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Recruit.Controllers
 {
@@ -19,6 +15,13 @@ namespace Recruit.Controllers
 
             return View();
         }
+
+        //public ActionResult Edit()
+        //{
+        //    ViewBag.Message = "Your application description page.";
+
+        //    return RedirectToAction("Edit", "Requisition");
+        //}
 
         public ActionResult Contact()
         {
