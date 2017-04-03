@@ -70,6 +70,20 @@
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title pull-left">
+                <b> List of skills </b>
+            </h3>
+
+            @using (Html.BeginForm("EditSkill", "Skill", FormMethod.Get))
+            { 
+                <button class="btn btn-default pull-right">Edit skills</button>
+            }
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">Panel content</div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title pull-left">
                 <b> Scoring scheme </b>
             </h3>
 

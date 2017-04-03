@@ -1,4 +1,6 @@
-﻿
+﻿@model Recruit.Models.Skills
+
+
 @{
     ViewBag.Title = "Edit";
 }
@@ -37,9 +39,24 @@
     </div>
 </div>
 
-<span id="txtArea" class="list-group">
-    
-</span>
+<div id="txtArea" class="txt-area">
+
+</div>
+
+<div id="multi" >
+
+    <select id="example" name="example" multiple="multiple">
+        foreach(var skill in Model) {
+        <option value="">skill.Name</option>
+        }
+    </select>
+
+
+</div>
+
+<div id="butn">
+
+</div>
 
 @section Scripts{
     <script type="text/javascript">
@@ -51,7 +68,8 @@
                 event.preventDefault();
                 $("<input/>", {
                     "id": "textInput",
-                    "class": "form-control list-inline"
+                    "class": "form-control"
+                    
                 }).appendTo("#txtArea");
 
                 $("<label/>",{
@@ -74,13 +92,23 @@
 
                 s.appendTo("#txtArea");
 
+
+                var m= $('<select/>' ,{
+                    "class" : "form-control",
+                    "id": "multiList",
+                    "multiple" :"multiple",
+                        
+                });
+
+                m.appendTo("#multi");
+
                 $("<button/>", {
                     "id": "btnSubmit",
                     "class": "btn btn-primary text-right",
                     "text": 'Add',
 
 
-                }).appendTo("#txtArea");
+                }).appendTo("#butn");
 
                 toggle = true;
             }
@@ -91,7 +119,7 @@
             if(!$("#txtInput").value)
             {
                 console.log("Inside if");
-                $("#txtInput").css("color" , "red");
+                $("#txtInput").css("background-color","red");
             }
             else
             {
@@ -100,6 +128,8 @@
             }
         });
 
+
+       
        
     </script>
 

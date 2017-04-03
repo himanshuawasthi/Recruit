@@ -1,0 +1,66 @@
+﻿@model List<Recruit.Models.Skills>
+
+
+
+@{
+    ViewBag.Title = "EditSkill";
+}
+
+<h2>Skills</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="panel-title pull-left">
+            <b>All Skills</b>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th> </th>
+                        <th> </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var skill in Model)
+                    {
+                        <tr>
+
+                            <td>@skill.Name</td>
+                            <td><button type="submit" class="btn btn-primary">Delete</button></td>
+                            <td><button type="submit" class="btn btn-primary">Edit</button></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="txtArea" class="form-inline">
+    @using (Html.BeginForm("Add", "Skill", FormMethod.Post))
+    {
+        <input type="text" class="form-control" />
+        <button type="submit" class="btn btn-primary">Add Skill</button>
+    }
+</div>
+
+
+
+<div id="butn">
+
+</div>
+
+
+
+
+

@@ -162,6 +162,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RequisitionController.cs" />
+    <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,6 +177,10 @@
     <Compile Include="Migrations\201703301116315_changeinCandidateTable.cs" />
     <Compile Include="Migrations\201703301116315_changeinCandidateTable.Designer.cs">
       <DependentUpon>201703301116315_changeinCandidateTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703311112007_Requisitiontablechanged.cs" />
+    <Compile Include="Migrations\201703311112007_Requisitiontablechanged.Designer.cs">
+      <DependentUpon>201703311112007_Requisitiontablechanged.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -200,6 +205,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-multiselect.css" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.min.js.map">
@@ -266,6 +273,7 @@
     </Content>
     <Content Include="Views\Requisition\Edit.cshtml" />
     <Content Include="Views\Requisition\Index.cshtml" />
+    <Content Include="Views\Skill\EditSkill.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -286,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703301116315_changeinCandidateTable.resx">
       <DependentUpon>201703301116315_changeinCandidateTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703311112007_Requisitiontablechanged.resx">
+      <DependentUpon>201703311112007_Requisitiontablechanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
