@@ -1,4 +1,9 @@
-﻿@{
+﻿@using Recruit.ViewModel;
+@model Recruit.ViewModel.HomePageViewModel 
+
+
+
+@{
     ViewBag.Title = "Home Page";
 }
 <div class="container widgets">
@@ -25,12 +30,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Test</td>
-                            <td><button class="btn btn-primary">Add candidate</button></td>
+                        @foreach (var req in Model.Requisitions )
+                        {
+                            <tr>
 
-                        </tr>
+                                <td>@req.reqNo</td>
+                                <td><button type="submit" class="btn btn-primary js-delete" id="@req.Id">Add Candidate</button></td>
+                                
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -56,12 +64,17 @@
                         </tr>
                     </thead>
                     <tbody>
+                       @foreach (var candidate in Model.Candidate)
+                       {
                         <tr>
-                            <td>1</td>
-                            <td>Test</td>
-                            <td>Test</td>
-                            <td>Test</td>
+                            <td>@candidate.RequisitionId</td>
+                            <td>@candidate.Name</td>
+                            <td>@candidate.Email</td>
+                            <td>@candidate.DOB</td>
+                            
+
                         </tr>
+                       }
                     </tbody>
                 </table>
             </div>
@@ -79,7 +92,30 @@
             }
             <div class="clearfix"></div>
         </div>
-        <div class="panel-body">Panel content</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var skill in Model.Skill)
+                        {
+                            <tr>
+                                
+                                <td>@skill.Name</td>
+                                
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            </div>
     </div>
     <div class="panel panel-info">
         <div class="panel-heading">

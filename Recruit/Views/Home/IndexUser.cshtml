@@ -1,0 +1,125 @@
+﻿@using Recruit.ViewModel;
+@model Recruit.ViewModel.HomePageViewModel
+
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="container widgets">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title pull-left">
+                <b>  Requisitions </b>
+            </h3>
+          
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Open Requisitions</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var req in Model.Requisitions)
+                        {
+                            <tr>
+
+                                <td>@req.reqNo</td>
+                                <td><button type="submit" class="btn btn-primary js-delete" id="@req.Id">Add Candidate</button></td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <div class="panel-title pull-left">
+                <b>Candidates</b>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Req#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>DOB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var candidate in Model.Candidate)
+                        {
+                            <tr>
+                                <td>@candidate.RequisitionId</td>
+                                <td>@candidate.Name</td>
+                                <td>@candidate.Email</td>
+                                <td>@candidate.DOB</td>
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title pull-left">
+                <b> List of skills </b>
+            </h3>
+
+           
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var skill in Model.Skill)
+                        {
+                            <tr>
+
+                                <td>@skill.Name</td>
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title pull-left">
+                <b> Scoring scheme </b>
+            </h3>
+
+            
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">Panel content</div>
+    </div>
+</div>
