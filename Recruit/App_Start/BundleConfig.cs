@@ -13,7 +13,8 @@ namespace Recruit
                         "~/Scripts/bootbox.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/datatables/jquery.datatables.js",
-                        "~/Scripts/datatables/datatables.bootstrap.js"
+                        "~/Scripts/datatables/datatables.bootstrap.js",
+                        "~/Scripts/bootstrap-multiselect.js"
             
                       ));
 
@@ -30,7 +31,8 @@ namespace Recruit
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-yeti.css",
                       "~/Content.datatables/css/datatables.bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-multiselect.css"));
         }
     }
 }

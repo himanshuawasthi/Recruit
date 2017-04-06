@@ -1,4 +1,5 @@
-﻿@model Recruit.Models.Skills
+﻿@using Recruit.ViewModel
+@model Recruit.ViewModel.RequisitionPageViewModel
 
 
 @{
@@ -11,7 +12,7 @@
         <div class="panel-title pull-left">
             <b>All Requisitions</b>
         </div>
-        <button id="btnReq" class="btn btn-default pull-right">Add Requisitions</button>
+        
         <div class="clearfix"></div>
     </div>
     <div class="panel-body">
@@ -21,119 +22,72 @@
                     <tr>
                         <th>Req#</th>
                         <th>Status</th>
+                        <th>Skills</th>
                         <th></th>
                         
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td></td>
-                        <td><button class="btn btn-primary">Change</button></td>
-                       
-                        
-                    </tr>
+
+                    @foreach (var req in Model.Requisitions)
+                    {
+                        <tr>
+
+                            <td>@req.reqNo</td>
+                            <td>@req.Req_status</td>
+                            <td>
+                                <ul>
+                                    @foreach (var skill in Model.skills_in_req)
+                                    {
+                                        <li>@skill</li>
+                                    }
+                                </ul>
+                            </td>
+                            <td><button type="submit" class="btn btn-primary js-delete" id="@req.Id">Edit</button></td>
+
+                        </tr>
+                    }
+
                 </tbody>
+
             </table>
         </div>
     </div>
 </div>
 
-<div id="txtArea" class="txt-area">
+<div id="txtArea" class="form-inline">
+        @using (Html.BeginForm("Add", "Skill", FormMethod.Post))
+        {
+            <input type="text" class="form-control" />
+            @Html.DropDownList("Status", new List<SelectListItem>
+                {
+                    new SelectListItem{ Text="Open", Value = "1" },
+                    new SelectListItem{ Text="Closed", Value = "0" }
+                 }, new { @class = "form-control" })
 
-</div>
+            <select id="insightList " multiple="multiple" name="sightList">
+                <optgroup label="Skill Set">
+                    @foreach (var skill in Model.Skill)
+                    {
+                            <option>@skill.Name</option>
+                    }
+                </optgroup>
 
-<div id="multi" >
+            </select>
 
-    <select id="example" name="example" multiple="multiple">
-        foreach(var skill in Model) {
-        <option value="">skill.Name</option>
+             //@Html.DropDownListFor(m => m.SelectedSkill, Model.Skill, new { @class="form-control"})
+            <button type="submit" class="btn btn-primary">Add Skill</button>
+            
+              
         }
-    </select>
-
-
 </div>
 
-<div id="butn">
-
-</div>
-
-@section Scripts{
-    <script type="text/javascript">
-
-        var toggle = false;
-        $("#btnReq").click(function (event) {
-            if (!toggle) {
-                console.log("in func");
-                event.preventDefault();
-                $("<input/>", {
-                    "id": "textInput",
-                    "class": "form-control"
-                    
-                }).appendTo("#txtArea");
-
-                $("<label/>",{
-                    "id":"Lbl",
-                    "Text" : "Set Status"
-                }).appendTo("#txtArea");
-
-                var data = {
-                    'foo': 'Open',
-                    'foo2': 'Closed'
-                }
-
-                var s = $('<select />',
-                    {"class" : "form-control pull-right"
-                });
-
-                for (var val in data) {
-                    $('<option />', { value: val, text: data[val] }).appendTo(s);
-                }
-
-                s.appendTo("#txtArea");
-
-
-                var m= $('<select/>' ,{
-                    "class" : "form-control",
-                    "id": "multiList",
-                    "multiple" :"multiple",
-                        
-                });
-
-                m.appendTo("#multi");
-
-                $("<button/>", {
-                    "id": "btnSubmit",
-                    "class": "btn btn-primary text-right",
-                    "text": 'Add',
-
-
-                }).appendTo("#butn");
-
-                toggle = true;
-            }
+@section scripts
+{
+    <script id="dropdown">
+        $('#insightList').multiselect({
+            enableClickableOptGroups: true
         });
-
-        $("#txtArea").on('click', ' #txtInput,#btnSubmit', function () {
-            console.log("Date ");
-            if(!$("#txtInput").value)
-            {
-                console.log("Inside if");
-                $("#txtInput").css("background-color","red");
-            }
-            else
-            {
-                console.log("Inside else");
-               
-            }
-        });
-
-
-       
-       
     </script>
-
-
 }
-
 

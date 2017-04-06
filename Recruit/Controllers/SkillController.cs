@@ -29,7 +29,24 @@ namespace Recruit.Controllers
                 context.SaveChanges();
                 objs = context.Skills.ToList();
             }
-            return View(objs);
+            return RedirectToAction("EditSkill");
+        }
+
+        public ActionResult Add(string Skill)
+        {
+            var obj = new Skills
+            {
+                Name = Skill
+            };
+            List<Skills> newObj = null;
+            using (var context = new ApplicationDbContext())
+            {
+                context.Skills.Add(obj);
+                context.SaveChanges();
+                newObj = context.Skills.ToList();
+            }
+
+            return RedirectToAction("EditSkill");
         }
     }
 }

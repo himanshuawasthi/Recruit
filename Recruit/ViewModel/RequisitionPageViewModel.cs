@@ -1,15 +1,17 @@
 ﻿using Recruit.Models;
 using System.Collections.Generic;
+using System.Web.Mvc;
+
 
 namespace Recruit.ViewModel
 {
-    public class HomePageViewModel
+    public class RequisitionPageViewModel
     {
-        public IEnumerable<Candidates> Candidate { get; set; }
         public IEnumerable<Requisition> Requisitions { get; set; }
-
         public IEnumerable<Skills> Skill { get; set; }
-        public IEnumerable<Scoring_scheme> Scoring_schemes { get; set; }
-        
+
+        public IEnumerable<skill_in_req> skills_in_req { get; set; }
+
+        public List<SelectListItem> SelectedSkill { get; set; }
     }
 }

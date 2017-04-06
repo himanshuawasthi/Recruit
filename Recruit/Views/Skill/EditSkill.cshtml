@@ -13,10 +13,20 @@
         <div class="panel-title pull-left">
             <b>All Skills</b>
         </div>
-
+        <div id="txtArea" class="form-inline pull-right">
+            @using (Html.BeginForm("Add", "Skill", FormMethod.Post, new {Id="addSkill"}))
+            {
+                <input id="addSkill" type="text" class="form-control" name="Skill"/>
+                <button type="submit" class="btn btn-primary">Add Skill</button>
+            }
+        </div>
         <div class="clearfix"></div>
+       
     </div>
+   
+
     <div class="panel-body">
+        
         <div class="table-responsive">
             <table class="table table-bordered " id="Skills">
                 <thead>
@@ -46,13 +56,7 @@
     </div>
 </div>
 
-<div id="txtArea" class="form-inline">
-    @using (Html.BeginForm("Add", "Skill", FormMethod.Post))
-    {
-        <input type="text" class="form-control" />
-        <button type="submit" class="btn btn-primary">Add Skill</button>
-    }
-</div>
+
 
 
 

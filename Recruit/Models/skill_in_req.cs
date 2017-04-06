@@ -6,7 +6,7 @@ namespace Recruit.Models
         public int Id { get; set; }
         public int SkillsId { get; set; }
         public Skills Skills { get; set; }
-        public int ReqId { get; set; }
+        public int RequisitionId { get; set; }
         public Requisition Requisition { get; set; }
     }
 }
