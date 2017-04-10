@@ -32,6 +32,13 @@ namespace Recruit.Controllers
             return RedirectToAction("EditSkill");
         }
 
+        public ActionResult Edit(int key)
+        {
+            return View();
+        }
+
+
+   
         public ActionResult Add(string Skill)
         {
             var obj = new Skills
