@@ -11,7 +11,7 @@ namespace Recruit.Controllers
         public ActionResult EditSkill()
         {
             List<Skills> obj;
-            using(var context = new ApplicationDbContext())
+            using (var context = new ApplicationDbContext())
             {
                 obj = context.Skills.ToList();
             }
@@ -22,14 +22,14 @@ namespace Recruit.Controllers
         public ActionResult EditSkill(int key)
         {
             List<Skills> objs;
-            using(var context = new ApplicationDbContext())
+            using (var context = new ApplicationDbContext())
             {
                 var obj = context.Skills.Where(m => m.Id == key).FirstOrDefault();
                 context.Skills.Remove(obj);
                 context.SaveChanges();
                 objs = context.Skills.ToList();
             }
-            return RedirectToAction("EditSkill");
+            return Json(objs, "Success");
         }
 
         public ActionResult Edit(int key)
@@ -38,12 +38,12 @@ namespace Recruit.Controllers
         }
 
 
-   
-        public ActionResult Add(string Skill)
+
+        public ActionResult Add(string key)
         {
             var obj = new Skills
             {
-                Name = Skill
+                Name = key
             };
             List<Skills> newObj = null;
             using (var context = new ApplicationDbContext())
@@ -53,7 +53,24 @@ namespace Recruit.Controllers
                 newObj = context.Skills.ToList();
             }
 
-            return RedirectToAction("EditSkill");
+            return Json(newObj, "Success");
+        }
+
+        public ActionResult Update(string key, string oldVal)
+        {
+            var obj = new Skills
+            {
+                Name = key
+            };
+            using (var context = new ApplicationDbContext())
+            {
+                obj = context.Skills.Where(m => m.Name == oldVal).FirstOrDefault();
+                obj.Name = key;
+                var entry = context.Entry(obj);
+                entry.Property(e => e.Name).IsModified = true;
+                context.SaveChanges();
+            }
+            return Json(obj , "Success");
         }
     }
 }

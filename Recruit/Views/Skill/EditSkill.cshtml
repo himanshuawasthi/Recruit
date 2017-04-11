@@ -14,11 +14,11 @@
             <b>All Skills</b>
         </div>
         <div id="txtArea" class="form-inline pull-right">
-            @using (Html.BeginForm("Add", "Skill", FormMethod.Post, new {Id="addSkill"}))
-            {
-                <input id="addSkill" type="text" class="form-control" name="Skill"/>
-                <button type="submit" class="btn btn-primary">Add Skill</button>
-            }
+            @*@using (Html.BeginForm("Add", "Skill", FormMethod.Post, new {Id="addSkill"}))*@
+            
+                <input id="addSkillText" type="text" class="form-control addSkillText" name="Skill"/>
+                <button type="submit" class="btn btn-primary" id="btnAddSkill">Add Skill</button>
+            
         </div>
         <div class="clearfix"></div>
        
@@ -32,8 +32,8 @@
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th> </th>
-                        <th> </th>
+                        <th>Delete </th>
+                        <th>Edit </th>
 
 
                     </tr>
@@ -44,10 +44,9 @@
                     {
                         <tr>
 
-                            <td id="name+@skill.Id">@skill.Name</td>
-                           
+                            <td id="skillName">@skill.Name</td>
                             <td><button type="submit" class="btn btn-primary js-delete" id="@skill.Id">Delete</button></td>
-                            <td><button type="submit" class="btn btn-primary js-edit" id="@skill.Id">Edit</button></td>
+                            <td><button type="submit" class="btn btn-primary js-edit" id="skillId">Edit</button></td>
                         </tr>
                     }
 
@@ -72,10 +71,11 @@
      <script>
          $(document).ready(function () {
 
-
+             $(".skillNameEdit").prop('disabled', true);
+            
              $("#Skills").DataTable();
 
-
+             
              $("#Skills .js-delete").on('click', function (event) {
                  console.log("In handler");
 
@@ -93,7 +93,7 @@
                              dataType: "json",
                              success: function (data) {
                                  
-                                 window.location.href = window.location.href;
+                                 window.location.reload(true);
                                  console.log("In success");
                                  button.parents("tr").remove();
                              },
@@ -110,14 +110,84 @@
                  
              });
 
-             $("#Skills .js-edit").on('click', function (event) {
+             var editVal;
+
+             $("#Skills .js-edit").click( function (event) {
                  console.log("In Edit handler");
-                 var Id = "#name+" + event.target.id;
-                 console.log(event.target.id);
-                 console.log($(Id));
+
+                 var $row = $(this).closest("tr");
+                 console.log($row);
+                 var $text = $row.find("#skillName").text();
+
+                 editVal=$text;
+
+                 console.log($text);
+
+                 $("#addSkillText").val($text);
+                 $("#btnAddSkill").text("Update");
+                 
+
+                
+
+
                 
              }
              );
+
+             
+             $("#btnAddSkill").click(function (event) {
+                 console.log("In add/update handler");
+
+                 var value = $("#btnAddSkill").text();
+                 console.log(value);
+
+                 if(value=="Update")
+                 {
+                     console.log("Inside update");
+                     var skill = $("#addSkillText").val();
+                     $.ajax({
+                         type: 'POST',
+                         url: "@Url.Action("Update", "Skill")",
+                         data: JSON.stringify({'key': skill, 'oldVal': editVal}),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                                 
+                            window.location.reload(true);
+                            console.log("In success");
+                            
+                        },
+                        error: function(data)
+                        {
+                             console.log(data);
+                        }
+                    });
+                 }
+                 else
+                 {
+                     console.log("Inside add");
+                     var skill = $("#addSkillText").val();
+                     console.log(skill);
+                    
+                     $.ajax({
+                         type: 'POST',
+                         url: "@Url.Action("Add", "Skill")",
+                         data: JSON.stringify({ "key": skill }),
+                         contentType: "application/json; charset=utf-8",
+                         dataType: "json",
+                         success: function (data) {
+                                 
+                             window.location.reload(true);
+                             console.log("In success");
+                             
+                        },
+                        error: function(data)
+                        {
+                             console.log(data);
+                        }
+                     });
+                 }
+             })
          
          });
      </script>
