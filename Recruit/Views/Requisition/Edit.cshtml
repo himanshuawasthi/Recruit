@@ -1,5 +1,4 @@
-﻿@using Recruit.ViewModel
-@model Recruit.ViewModel.RequisitionPageViewModel
+﻿@model Recruit.ViewModel.RequisitionPageViewModel
 
 
 @{
@@ -12,7 +11,14 @@
         <div class="panel-title pull-left">
             <b>All Requisitions</b>
         </div>
-        
+
+        @using (Html.BeginForm("Add", "ReqDetails", FormMethod.Get))
+        { 
+            <div id="txtArea" class="form-inline pull-right">
+     
+                <button type="submit" class="btn btn-primary" id="btnAddReq">Add Requisition</button>
+            </div>
+        }
         <div class="clearfix"></div>
     </div>
     <div class="panel-body">
@@ -23,7 +29,7 @@
                         <th>Req#</th>
                         <th>Status</th>
                         <th>Skills</th>
-                        <th></th>
+                        <th>Edit</th>
                         
                     </tr>
                 </thead>
@@ -39,7 +45,7 @@
                                 <ul>
                                     @foreach (var skill in Model.skills_in_req)
                                     {
-                                        <li>@skill</li>
+                                        <li>crap</li>
                                     }
                                 </ul>
                             </td>
@@ -55,39 +61,36 @@
     </div>
 </div>
 
-<div id="txtArea" class="form-inline">
-        @using (Html.BeginForm("Add", "Skill", FormMethod.Post))
-        {
-            <input type="text" class="form-control" />
-            @Html.DropDownList("Status", new List<SelectListItem>
-                {
-                    new SelectListItem{ Text="Open", Value = "1" },
-                    new SelectListItem{ Text="Closed", Value = "0" }
-                 }, new { @class = "form-control" })
 
-            <select id="insightList " multiple="multiple" name="sightList">
-                <optgroup label="Skill Set">
-                    @foreach (var skill in Model.Skill)
+@section scripts{
+    @*<script>
+        $(document).ready(function () {
+
+            $("#btnAddReq").click(function (event) {
+                console.log("add req button clicked");
+
+                var Req = $("#addReqText").val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("Add", "Requisition")",
+                    data: JSON.stringify({ "key": Req }),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+
+                        window.location.reload(true);
+                        console.log("In success");
+
+                    },
+                    error: function(data)
                     {
-                            <option>@skill.Name</option>
+                        console.log(data);
                     }
-                </optgroup>
+                });
+               })
 
-            </select>
 
-             //@Html.DropDownListFor(m => m.SelectedSkill, Model.Skill, new { @class="form-control"})
-            <button type="submit" class="btn btn-primary">Add Skill</button>
-            
-              
-        }
-</div>
-
-@section scripts
-{
-    <script id="dropdown">
-        $('#insightList').multiselect({
-            enableClickableOptGroups: true
         });
-    </script>
+    </script>*@
 }
-

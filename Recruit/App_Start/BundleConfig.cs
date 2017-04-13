@@ -14,8 +14,8 @@ namespace Recruit
                         "~/Scripts/respond.js",
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/datatables.bootstrap.js",
-                        "~/Scripts/bootstrap-multiselect.js"
-            
+                        "~/Scripts/bootstrap-multiselect.js",
+                        "~/Scripts/bootstrap-toggle.js"            
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -32,7 +32,9 @@ namespace Recruit
                       "~/Content/bootstrap-yeti.css",
                       "~/Content.datatables/css/datatables.bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap-multiselect.css"));
+                      "~/Content/bootstrap-multiselect.css",
+                      "~/Content/bootstrap-toggle.css"
+                      ));
         }
     }
 }

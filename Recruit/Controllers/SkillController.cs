@@ -32,13 +32,7 @@ namespace Recruit.Controllers
             return Json(objs, "Success");
         }
 
-        public ActionResult Edit(int key)
-        {
-            return View();
-        }
-
-
-
+    
         public ActionResult Add(string key)
         {
             var obj = new Skills

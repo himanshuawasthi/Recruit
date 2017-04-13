@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReqDetailsController.cs" />
     <Compile Include="Controllers\RequisitionController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,9 +212,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-cerulean.css" />
+    <Content Include="Content\bootstrap-toggle.css" />
+    <Content Include="Content\bootstrap-toggle.min.css" />
     <Content Include="Content\bootstrap-yeti.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap2-toggle.css" />
+    <Content Include="Content\bootstrap2-toggle.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.dataTables.css" />
@@ -329,6 +334,8 @@
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Content\bootstrap-multiselect.css" />
     <Content Include="Scripts\bootstrap-multiselect.js" />
+    <Content Include="Scripts\bootstrap-toggle.js" />
+    <Content Include="Scripts\bootstrap-toggle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrap.min.js.map">
@@ -337,6 +344,8 @@
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap2-toggle.js" />
+    <Content Include="Scripts\bootstrap2-toggle.min.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
     <Content Include="Scripts\DataTables\autoFill.foundation.js" />
@@ -460,9 +469,9 @@
       <DependentUpon>jquery.validate.min.js</DependentUpon>
     </Content>
     <Content Include="Views\Requisition\Edit.cshtml" />
-    <Content Include="Views\Requisition\Index.cshtml" />
     <Content Include="Views\Skill\EditSkill.cshtml" />
     <Content Include="Views\Home\IndexUser.cshtml" />
+    <Content Include="Views\ReqDetails\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

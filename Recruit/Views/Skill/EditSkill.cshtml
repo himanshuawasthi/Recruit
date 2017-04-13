@@ -13,12 +13,9 @@
         <div class="panel-title pull-left">
             <b>All Skills</b>
         </div>
-        <div id="txtArea" class="form-inline pull-right">
-            @*@using (Html.BeginForm("Add", "Skill", FormMethod.Post, new {Id="addSkill"}))*@
-            
-                <input id="addSkillText" type="text" class="form-control addSkillText" name="Skill"/>
-                <button type="submit" class="btn btn-primary" id="btnAddSkill">Add Skill</button>
-            
+        <div id="txtArea" class="form-inline pull-right">   
+            <input id="addSkillText" type="text" class="form-control addSkillText" name="Skill"/>
+            <button type="submit" class="btn btn-primary" id="btnAddSkill">Add Skill</button>    
         </div>
         <div class="clearfix"></div>
        
@@ -71,7 +68,7 @@
      <script>
          $(document).ready(function () {
 
-             $(".skillNameEdit").prop('disabled', true);
+           
             
              $("#Skills").DataTable();
 
