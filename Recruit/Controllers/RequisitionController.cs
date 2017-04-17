@@ -32,9 +32,15 @@ namespace Recruit.Controllers
         {
             return View(FetchModel());
         }
-
         [HttpPost]
         public ActionResult Add(string key, string[] skillArray, bool status)
+        {
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(string key, string[] skillArray, bool status)
         {
 
             return View();
