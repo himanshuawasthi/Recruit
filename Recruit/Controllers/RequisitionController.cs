@@ -1,5 +1,6 @@
 ﻿using Recruit.Models;
 using Recruit.ViewModel;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -20,11 +21,7 @@ namespace Recruit.Controllers
                     Requisitions = context.Requisition.ToList(),
                     Skill = context.Skills.ToList(),
                     skills_in_req = context.skill_in_req.ToList(),
-                    SelectedSkill = context.Skills.ToList().Select(menu => new SelectListItem
-                    {
-                        Value = menu.Id.ToString(),
-                        Text = menu.Name
-                    }).ToList()
+                    
                 };
                 obj = mymodel;
             }
@@ -36,11 +33,28 @@ namespace Recruit.Controllers
             return View(FetchModel());
         }
 
-        public ActionResult Add(string key)
-        {
-            return View();
+        //public ActionResult Add(string key, bool status, string[] skillArray)
+        //{
+        //    var obj = new Requisition
+        //    {
+        //        reqNo = key,
+        //        Req_status = status,
+        //        CreatedDate = DateTime.Now,
+                
+
+        //    };
+           
+            //using (var context = new ApplicationDbContext())
+            //{
+            //    context.Requisition.Add(obj);
+            //    context.SaveChanges();
+               
+            //}
+
+            //return Json("Success");
+           
         
            
-        }
+        
     }
 }

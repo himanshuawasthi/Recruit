@@ -1,0 +1,68 @@
+﻿@model Recruit.Models.Candidates
+@{
+    ViewBag.Title = "AddCandidate";
+}
+
+<h2>Add a Candidate</h2>
+
+@using (Html.BeginForm("AddCandidate", "Candidate"))
+{
+    <p class="alert alert-info">All fields are <strong>required</strong>.</p>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Requisition)
+        @Html.TextBoxFor(m => m.Requisition, new { @class = "form-control", autofocus = "autofocus" , @id="reqName"})
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control", autofocus = "autofocus" ,@id="name"})
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DOB)
+        @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", placeholder = "eg. 1 Jan 1990 " ,@id="birthdate"})
+        @Html.ValidationMessageFor(m => m.DOB)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Contact)
+        @Html.TextBoxFor(m => m.Contact, new { @class = "form-control" , @id="contact"})
+        @Html.ValidationMessageFor(m => m.Contact)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @Html.TextBoxFor(m => m.Email , new { @class = "form-control" , placeholder = "eg. username@something.com" ,@id="email"})
+        @Html.ValidationMessageFor(m => m.Email)
+    </div>
+    <button type="submit" class="btn btn-primary" id="btn-Save">
+        Save
+
+    </button>
+
+}
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+
+            $("#reqName").attr("disabled" , "disabled");
+
+            $("#btn-Save").click(function (event) {
+                console.log("Save button clicked");
+
+                var name = $("#name").text();
+                var DOB = $("#birthdate").text();
+                var contact = $("#contact").text();
+                var Email = $("#email").text();
+                var ReqName = $("#reqName").text();
+
+                console.log(name + " " + DOB + " " + contact + " " + Email + " " + ReqName );
+
+
+            });
+
+
+
+        });
+    </script>
+    }
+

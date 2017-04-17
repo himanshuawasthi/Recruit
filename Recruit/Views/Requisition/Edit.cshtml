@@ -11,14 +11,11 @@
         <div class="panel-title pull-left">
             <b>All Requisitions</b>
         </div>
-
-        @using (Html.BeginForm("Add", "ReqDetails", FormMethod.Get))
-        { 
-            <div id="txtArea" class="form-inline pull-right">
+        <div id="txtArea" class="form-inline pull-right">
      
-                <button type="submit" class="btn btn-primary" id="btnAddReq">Add Requisition</button>
-            </div>
-        }
+             <button type="submit" class="btn btn-primary" id="btnAddReq">Add Requisition</button>
+        </div>
+        
         <div class="clearfix"></div>
     </div>
     <div class="panel-body">
@@ -28,7 +25,6 @@
                     <tr>
                         <th>Req#</th>
                         <th>Status</th>
-                        <th>Skills</th>
                         <th>Edit</th>
                         
                     </tr>
@@ -41,15 +37,7 @@
 
                             <td>@req.reqNo</td>
                             <td>@req.Req_status</td>
-                            <td>
-                                <ul>
-                                    @foreach (var skill in Model.skills_in_req)
-                                    {
-                                        <li>crap</li>
-                                    }
-                                </ul>
-                            </td>
-                            <td><button type="submit" class="btn btn-primary js-delete" id="@req.Id">Edit</button></td>
+                            <td><button type="submit" class="btn btn-primary js-edit" id="@req.Id">Edit</button></td>
 
                         </tr>
                     }
@@ -62,35 +50,78 @@
 </div>
 
 
-@section scripts{
-    @*<script>
-        $(document).ready(function () {
+<div id="inlineForm">
+    <form class="form-inline">
+        <label class="sr-only" for="inlineFormInput"></label>
+        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="ReqNo" placeholder="REQ#">
+        REQ No
 
-            $("#btnAddReq").click(function (event) {
-                console.log("add req button clicked");
 
-                var Req = $("#addReqText").val();
+        <label class="sr-only" for="inlineFormInputGroup"></label>
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input type="checkbox" data-toggle="toggle" data-on="Open" data-off="Closed" id="toggle-one" class="form-control">
+            Status
+        </div>
 
-                $.ajax({
-                    type: 'POST',
-                    url: "@Url.Action("Add", "Requisition")",
-                    data: JSON.stringify({ "key": Req }),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-
-                        window.location.reload(true);
-                        console.log("In success");
-
-                    },
-                    error: function(data)
+       
+           
+                <select id="MultiSkill" multiple="multiple">
+                    @foreach (var skill in Model.Skill)
                     {
-                        console.log(data);
+                        <option> @skill.Name</option>
                     }
+                </select>
+                
+          
+            Skills
+        
+
+        <button type="submit" class="btn btn-primary" id="btnSelected">Save</button>
+    </form>
+</div> 
+
+@section scripts{
+    <script>
+            $(document).ready(function () {
+
+
+                $('#inlineForm').hide();
+
+                $('#toggle-one').bootstrapToggle();
+
+                $('#btnAddReq').click(function () {
+                    $('#inlineForm').show();
                 });
-               })
+
+                var ReqNo = $("#ReqNo").val();
+
+                if ($('#toggle-one').is(":checked"))
+                {
+                    var status = true;
+                }
+                else
+                {
+                    var status = false;
+                }
+
+                $('#MultiSkill').multiselect({
+                    includeSelectAllOption: true
+                });
 
 
-        });
-    </script>*@
+                $('#btnSelected').click(function () {
+                    console.log("Save button pressed");
+                    var selected = $("#MultiSkill option:selected");
+                    var message = "";
+                    selected.each(function () {
+                        message += $(this).text() + $(this).val() +" "+"\n";
+                    });
+                    alert(message);
+                    
+                });
+
+            });
+
+    </script>
 }
+
