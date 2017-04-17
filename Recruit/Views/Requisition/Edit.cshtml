@@ -12,10 +12,10 @@
             <b>All Requisitions</b>
         </div>
         <div id="txtArea" class="form-inline pull-right">
-     
-             <button type="submit" class="btn btn-primary" id="btnAddReq">Add Requisition</button>
+
+            <button type="submit" class="btn btn-primary" id="btnAddReq">Add Requisition</button>
         </div>
-        
+
         <div class="clearfix"></div>
     </div>
     <div class="panel-body">
@@ -26,7 +26,7 @@
                         <th>Req#</th>
                         <th>Status</th>
                         <th>Edit</th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
@@ -63,64 +63,93 @@
             Status
         </div>
 
-       
-           
-                <select id="MultiSkill" multiple="multiple">
-                    @foreach (var skill in Model.Skill)
-                    {
-                        <option> @skill.Name</option>
-                    }
-                </select>
-                
-          
-            Skills
-        
+
+
+        <select id="MultiSkill" multiple="multiple">
+            @foreach (var skill in Model.Skill)
+            {
+                <option> @skill.Name</option>
+            }
+        </select>
+
+
+        Skills
 
         <button type="submit" class="btn btn-primary" id="btnSelected">Save</button>
     </form>
-</div> 
+</div>
 
 @section scripts{
     <script>
-            $(document).ready(function () {
+        $(document).ready(function () {
+            var status = true;
+
+            $('#inlineForm').hide();
+
+            $('#toggle-one').bootstrapToggle();
+
+            $('#btnAddReq').click(function () {
+                $('#inlineForm').show();
+            });
+
+            var ReqNo = $("#ReqNo").val();
+
+            if ($('#toggle-one').is(":checked")) {
+                status = true;
+            }
+            else {
+                status = false;
+            }
+
+            $('#MultiSkill').multiselect({
+                includeSelectAllOption: true
+            });
 
 
-                $('#inlineForm').hide();
+            $('#btnSelected').click(function () {
+                var selected = $("#MultiSkill option:selected");
+                var ReqNo = $.trim($("#ReqNo").val());
 
-                $('#toggle-one').bootstrapToggle();
+                console.log(ReqNo);
+                console.log(selected);
+                console.log(status);
 
-                $('#btnAddReq').click(function () {
-                    $('#inlineForm').show();
+                var obj = { 'key': ReqNo, 'skillArray': selected, 'status': status };
+
+                console.log(obj);
+
+                 $.ajax({
+                    type: "POST",
+                    url: "/Requisition/Add",
+                    // The key needs to match your method's input parameter (case-sensitive).
+                    data: JSON.stringify(obj),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) { alert(data); },
+                    failure: function (errMsg) {
+                        alert(errMsg);
+                    }
                 });
 
-                var ReqNo = $("#ReqNo").val();
+                @*$.ajax({
+                        type: 'GET',
+                        url: "@Url.Action("Add","Requisition")",
+                        data: { 'key': ReqNo, 'skillArray': selected, 'status': status },
+                        dataType: "json",
+                        success: function (data) {
 
-                if ($('#toggle-one').is(":checked"))
-                {
-                    var status = true;
-                }
-                else
-                {
-                    var status = false;
-                }
+                            //window.location.reload(true);
+                            console.log("In success");
 
-                $('#MultiSkill').multiselect({
-                    includeSelectAllOption: true
-                });
-
-
-                $('#btnSelected').click(function () {
-                    console.log("Save button pressed");
-                    var selected = $("#MultiSkill option:selected");
-                    var message = "";
-                    selected.each(function () {
-                        message += $(this).text() + $(this).val() +" "+"\n";
-                    });
-                    alert(message);
-                    
-                });
+                        },
+                        error: function (data) {
+                            console.log(data);
+                        }
+                    });*@
 
             });
+
+        });
 
     </script>
 }

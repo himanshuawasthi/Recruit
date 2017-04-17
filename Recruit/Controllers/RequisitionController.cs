@@ -21,40 +21,26 @@ namespace Recruit.Controllers
                     Requisitions = context.Requisition.ToList(),
                     Skill = context.Skills.ToList(),
                     skills_in_req = context.skill_in_req.ToList(),
-                    
+
                 };
                 obj = mymodel;
             }
             return obj;
         }
-        
+
         public ActionResult Edit()
         {
             return View(FetchModel());
         }
 
-        //public ActionResult Add(string key, bool status, string[] skillArray)
-        //{
-        //    var obj = new Requisition
-        //    {
-        //        reqNo = key,
-        //        Req_status = status,
-        //        CreatedDate = DateTime.Now,
-                
+        [HttpPost]
+        public ActionResult Add(string key, string[] skillArray, bool status)
+        {
 
-        //    };
-           
-            //using (var context = new ApplicationDbContext())
-            //{
-            //    context.Requisition.Add(obj);
-            //    context.SaveChanges();
-               
-            //}
+            return View();
+        }
 
-            //return Json("Success");
-           
-        
-           
-        
+
+
     }
 }
